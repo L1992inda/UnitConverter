@@ -1,0 +1,16 @@
+select {
+    width: 200px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    color: #333; 
+    cursor: pointer; 
+  }
+
+
+  option {
+    padding: 10px;
+    text-align: center;
+  }
+  

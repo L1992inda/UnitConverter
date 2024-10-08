@@ -10,12 +10,31 @@ public class TemperatureConverter implements Values {
     @Override
     public double convert(String from, String to, Double value) {
 
-        if (from.equalsIgnoreCase("celsius") && to.equalsIgnoreCase("fahrenheit")) {
-            return (value * 1.8) + 32;
-        } else if (from.equalsIgnoreCase("fahrenheit") && to.equalsIgnoreCase("celsius")) {
-            return (value - 32) / 1.8;
-        } else {
-            throw new IllegalArgumentException("Pleas add valid temperature");
-        }
+        return switch (from.toLowerCase()) {
+            case "celsius" -> {
+                yield switch (to.toLowerCase()) {
+                    case "fahrenheit" -> (value * 1.8) + 32;
+                    case "kelvin" -> value + 273.15;
+                    default -> throw new IllegalArgumentException("unit cant dublicate");
+                };
+            }
+            case "fahrenheit" -> {
+                yield switch (to.toLowerCase()) {
+                    case "celsius" -> (value - 32) / 1.8;
+                    case "kelvin" -> ((value - 32) / 1.8) + 273.15;
+                    default -> throw new IllegalArgumentException("unit cant dublicate");
+                };
+            }
+            case "kelvin" -> {
+                yield switch (to.toLowerCase()) {
+                    case "celsius" -> value - 273.15; 
+                    case "fahrenheit" -> ((value - 273.15) * 1.8) + 32;
+                    default -> throw new IllegalArgumentException("unit cant dublicate");
+                };
+            }
+
+            default -> throw new IllegalArgumentException("invalid unit");
+        };
+
     }
 }

@@ -1,30 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-export const Data = () => {
-    const [fetchedData, setFetchedData] = useState({});
-
+const Data = ({ setData }) => {
     useEffect(() => {
         fetch("http://localhost:8080/units")
             .then((res) => res.json())
-            .then((data) => setFetchedData(data))
+            .then((data) => {
+                setData(data); 
+            })
             .catch((err) => console.error("Error fetching data", err));
-    }, []);
+    }, [setData]);
 
-    return (
-        <div>
-            {Object.keys(fetchedData).map((category) => (
-                <div key={category}>
-                    <h3>{category}</h3>
-                    <ul>
-                        {fetchedData[category].map((unit,index)=>
-                        (
-                            <li key={index}>
-                                {unit.name} ({unit.symbol})
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
-        </div>
-    );
 };
+
+export default Data;
