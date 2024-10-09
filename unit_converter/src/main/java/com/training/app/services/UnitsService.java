@@ -30,6 +30,7 @@ public class UnitsService {
 
         List<Unit> weightList = Arrays.asList(
                 new Unit("Micrograms", "μg"),
+                new Unit("Milligrams", "mg"),
                 new Unit("Grams", "g"),
                 new Unit("Kilograms", "kg"),
                 new Unit("Tons", "t"));

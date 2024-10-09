@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./dropdown.css";
 import Result from "../result/Result";
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, activeTab }) => {
   const [selectedUnit, setSelectedUnit] = useState({
     from: "",
     to: "",
@@ -21,8 +21,29 @@ const Dropdown = ({ options }) => {
     setSelectedUnit((prev) => ({ ...prev, value: event.target.value }));
   };
 
+  // const handleSubmit = () => {
+  //    if (selectedUnit.from && selectedUnit.to && selectedUnit.value){
+  //      <Result selectedUnit={selectedUnit} activeTab={activeTab} />
+
+  //   }
+  //}
+
+  useEffect(() => {
+    console.log("Resetting selectedUnit on tab change:", activeTab);
+    setSelectedUnit({ from: "", to: "", value: 0 });
+    console.log("values after tab change ", selectedUnit.from,selectedUnit.to,selectedUnit.value);
+  }, [activeTab]);
+
   return (
     <div>
+      <label>
+        <input
+          name="userInput"
+          type="number"
+          value={selectedUnit.value}
+          onChange={updateVAlue}
+        />
+      </label>
       <select value={selectedUnit.from} onChange={updateFrom}>
         <option value=""> - - - - - </option>
         {options.map((unit, index) => (
@@ -41,15 +62,10 @@ const Dropdown = ({ options }) => {
         ))}
       </select>
 
-      <label>
-        <input
-          name="userInput"
-          type="number"
-          value={selectedUnit.value}
-          onChange={updateVAlue}
-        />
-      </label>
-      <Result selectedUnit={selectedUnit} />
+      {selectedUnit.from && selectedUnit.to && selectedUnit.value  && (
+        <Result selectedUnit={selectedUnit} activeTab={activeTab} />
+      )}
+
     </div>
   );
 };

@@ -22,7 +22,6 @@ const App = () => {
     }));
     setOptions(allOptions);
   };
-
   return (
     <div>
       <Data setData={setFetchedData} />
@@ -37,6 +36,7 @@ const App = () => {
                   style={{ backgroundColor: activeTab === tab ? "#777" : "" }}
                   onClick={() => {
                     setActiveTab(tab);
+                    console.log("setActiveTab-->" , tab)
                     tabContent(tab);
                   }}
                 >
@@ -46,7 +46,7 @@ const App = () => {
             : ""}
         </div>
       }
-      {activeTab && <Dropdown options={options} />}
+      {activeTab && <Dropdown options={options} activeTab={activeTab} />}
     </div>
   );
 };
