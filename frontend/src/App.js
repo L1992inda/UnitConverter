@@ -1,52 +1,69 @@
 import React, { useEffect, useState } from "react";
-import Data from "./components/data";
+import { useData } from "./components/Data";
 import "./app.css";
 import Dropdown from "./components/dropdown/Dropdown";
 
 const App = () => {
-  const [fetchedData, setFetchedData] = useState({});
+  const { data } = useData();
+
   const [tabs, setTabs] = useState([]);
   const [activeTab, setActiveTab] = useState("");
   const [options, setOptions] = useState([]);
+  const [selectedUnit, setSelectedUnit] = useState({
+    from: "",
+    to: "",
+    value: 0,
+  });
 
   useEffect(() => {
-    if (Object.keys(fetchedData).length > 0) {
-      setTabs(Object.keys(fetchedData));
+    if (data) {
+      setTabs((prevState) => Object.keys(data));
     }
-  }, [fetchedData]);
+  }, [data]);
 
   const tabContent = (tab) => {
-    const allOptions = fetchedData[tab].map((unit) => ({
+    const allOptions = data[tab].map((unit) => ({
       name: unit.name,
       symbol: unit.symbol,
     }));
-    setOptions(allOptions);
+
+    setSelectedUnit((prevState) => ({
+      from: "",
+      to: "",
+      value: 0,
+    }));
+    setOptions((prevState) => allOptions);
+    setActiveTab(tab);
   };
+
   return (
     <div>
-      <Data setData={setFetchedData} />
-
       {
         <div>
-          {tabs.length > 0
-            ? tabs.map((tab) => (
-                <button
-                  className="navbar"
-                  key={tab}
-                  style={{ backgroundColor: activeTab === tab ? "#777" : "" }}
-                  onClick={() => {
-                    setActiveTab(tab);
-                    console.log("setActiveTab-->" , tab)
-                    tabContent(tab);
-                  }}
-                >
-                  {tab}
-                </button>
-              ))
-            : ""}
+          {tabs.map((tab) => (
+            <button
+              className="navbar"
+              key={tab}
+              style={{ backgroundColor: activeTab === tab ? "#777" : "" }}
+              onClick={() => {
+                tabContent(tab);
+              }}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
       }
-      {activeTab && <Dropdown options={options} activeTab={activeTab} />}
+      <div className="main-div">    
+        {activeTab && (
+          <Dropdown 
+            options={options}
+            activeTab={activeTab}
+            selectedUnit={selectedUnit}
+            setSelectedUnit={setSelectedUnit}
+          />
+        )}     
+      </div>
     </div>
   );
 };

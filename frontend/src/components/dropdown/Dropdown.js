@@ -2,48 +2,47 @@ import React, { useEffect, useState } from "react";
 import "./dropdown.css";
 import Result from "../result/Result";
 
-const Dropdown = ({ options, activeTab }) => {
-  const [selectedUnit, setSelectedUnit] = useState({
-    from: "",
-    to: "",
-    value: 0,
-  });
+const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
 
   const updateFrom = (event) => {
-    setSelectedUnit((prev) => ({ ...prev, from: event.target.value }));
+    if (event.target.value === selectedUnit.to){
+      setSelectedUnit((prev) => ({ ...prev, to: "" }));
+      setSelectedUnit((prev) => ({ ...prev, from: event.target.value }));
+    }else{
+      setSelectedUnit((prev) => ({ ...prev, from: event.target.value }));
+    }
   };
 
   const updateTo = (event) => {
-    setSelectedUnit((prev) => ({ ...prev, to: event.target.value }));
+    if (event.target.value === selectedUnit.from) {
+      setSelectedUnit((prev) => ({ ...prev, from: "" }));
+      setSelectedUnit((prev) => ({ ...prev, to: event.target.value }));
+    } else {
+      setSelectedUnit((prev) => ({ ...prev, to: event.target.value }));
+    }
   };
 
-  const updateVAlue = (event) => {
+  const updateValue = (event) => {
     setSelectedUnit((prev) => ({ ...prev, value: event.target.value }));
   };
 
-  // const handleSubmit = () => {
-  //    if (selectedUnit.from && selectedUnit.to && selectedUnit.value){
-  //      <Result selectedUnit={selectedUnit} activeTab={activeTab} />
-
-  //   }
-  //}
-
   useEffect(() => {
-    console.log("Resetting selectedUnit on tab change:", activeTab);
     setSelectedUnit({ from: "", to: "", value: 0 });
-    console.log("values after tab change ", selectedUnit.from,selectedUnit.to,selectedUnit.value);
   }, [activeTab]);
 
   return (
     <div>
+      <div>
       <label>
         <input
           name="userInput"
           type="number"
           value={selectedUnit.value}
-          onChange={updateVAlue}
+          onChange={updateValue}
         />
       </label>
+      </div>
+      <div className="dropdown-container"> 
       <select value={selectedUnit.from} onChange={updateFrom}>
         <option value=""> - - - - - </option>
         {options.map((unit, index) => (
@@ -61,11 +60,11 @@ const Dropdown = ({ options, activeTab }) => {
           </option>
         ))}
       </select>
-
-      {selectedUnit.from && selectedUnit.to && selectedUnit.value  && (
+</div><div className="result-container">
+      {selectedUnit.from && selectedUnit.to && selectedUnit.value && (
         <Result selectedUnit={selectedUnit} activeTab={activeTab} />
       )}
-
+</div>
     </div>
   );
 };

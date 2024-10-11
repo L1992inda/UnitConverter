@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
-const Data = ({ setData }) => {
+export const useData = ()=>{
+    const [data, setData] = useState(null);
+
     useEffect(() => {
         fetch("http://localhost:8080/units")
             .then((res) => res.json())
@@ -10,6 +12,12 @@ const Data = ({ setData }) => {
             .catch((err) => console.error("Error fetching data", err));
     }, [setData]);
 
+ return {
+        data
+    }
 };
 
-export default Data;
+
+
+
+   

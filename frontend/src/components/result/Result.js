@@ -8,15 +8,13 @@ const Result = ({selectedUnit,activeTab}) => {
     useEffect(()=>{
 
         if (selectedUnit.from && selectedUnit.to && selectedUnit.value && activeTab) {
-            console.log("----->",selectedUnit.from,selectedUnit.to,selectedUnit.value );
             const converter = activeTab.toLowerCase();
-            console.log(converter,"converter")
         const url = `http://localhost:8080/convert/${converter}?from=${selectedUnit.from}&to=${selectedUnit.to}&value=${selectedUnit.value}`;
+
 console.log(url)
         fetch(url)
         .then((res)=> res.json())
         .then((data)=>{
-            console.log("----->",data);
             setResult(data);
         })
         .catch((err)=>console.error("Error fetching data",err))
