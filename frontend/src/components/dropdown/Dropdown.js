@@ -16,9 +16,9 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
   const updateTo = (event) => {
     if (event.target.value === selectedUnit.from) {
       setSelectedUnit((prev) => ({ ...prev, from: "" }));
-      setSelectedUnit((prev) => ({ ...prev, to: event.target.value }));
+      setSelectedUnit((prev) => ({ ...prev, to: event.target.value}));
     } else {
-      setSelectedUnit((prev) => ({ ...prev, to: event.target.value }));
+      setSelectedUnit((prev) => ({ ...prev, to: event.target.value}));
     }
   };
 
@@ -26,12 +26,24 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
     setSelectedUnit((prev) => ({ ...prev, value: event.target.value }));
   };
 
+  const inputOnFocus =(e)=>{
+ if(selectedUnit.value === 0){
+  setSelectedUnit((prev)=>({...prev,value:""}))
+ }
+  };
+
+  const inputOnBlur=(e)=>{
+    if(selectedUnit.value === ""){
+      setSelectedUnit((prev)=>({...prev,value:0}))
+ }
+    }
+
   useEffect(() => {
-    setSelectedUnit({ from: "", to: "", value: 0 });
-  }, [activeTab]);
+    setSelectedUnit({ from: "", to: "", value: 0});
+  }, [activeTab,setSelectedUnit]);
 
   return (
-    <div>
+    <div className="container">
       <div>
       <label>
         <input
@@ -39,6 +51,8 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
           type="number"
           value={selectedUnit.value}
           onChange={updateValue}
+          onFocus={inputOnFocus}
+          onBlur={inputOnBlur}
         />
       </label>
       </div>
@@ -60,8 +74,9 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
           </option>
         ))}
       </select>
-</div><div className="result-container">
-      {selectedUnit.from && selectedUnit.to && selectedUnit.value && (
+</div>
+<div className="result-container">
+      {selectedUnit.from && selectedUnit.to && selectedUnit.value > 0 &&  (
         <Result selectedUnit={selectedUnit} activeTab={activeTab} />
       )}
 </div>

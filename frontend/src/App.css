@@ -17,7 +17,7 @@ body{
   background-color: #777;
 }
 
-.main-div{
+.dropdown-div{
   display: flex;
   justify-content: center;
   align-items: center;

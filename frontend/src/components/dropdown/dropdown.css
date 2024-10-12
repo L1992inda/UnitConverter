@@ -1,4 +1,5 @@
-input,select {
+input,
+select {
   width: 100%;
   padding: 0.7rem;
   border: 0.05rem solid #ccc;
@@ -7,23 +8,29 @@ input,select {
   text-align: center;
   color: #333;
   cursor: pointer;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  color: #4a4a4a;
+}
+
+.container {
+  width: 60%;
 }
 
 .dropdown-container {
   display: flex;
   gap: 2rem;
-  margin-top:1rem;
+  margin-top: 1rem;
 }
 
-.result-container{
+.result-container {
   display: flex;
-  justify-content: center;   
+  justify-content: center;
   align-items: center;
-  margin-top:3rem;
+  margin-top: 1rem;
   border: 0.05rem solid #ccc;
   border-radius: 0.4rem;
   width: 100%;
-  height:10rem;
-  font-size: 1rem;
+  height: 10rem;
+  font-size: 1.3rem;
+  color: #333;
 }

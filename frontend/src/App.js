@@ -54,7 +54,7 @@ const App = () => {
           ))}
         </div>
       }
-      <div className="main-div">    
+      <div className="dropdown-div">    
         {activeTab && (
           <Dropdown 
             options={options}
