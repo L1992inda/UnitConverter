@@ -77,7 +77,7 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
 </div>
 <div className="result-container">
       {selectedUnit.from && selectedUnit.to && selectedUnit.value > 0 &&  (
-        <Result selectedUnit={selectedUnit} activeTab={activeTab} />
+        <Result selectedUnit={selectedUnit} activeTab={activeTab} options={options} />
       )}
 </div>
     </div>

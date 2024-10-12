@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Result = ({ selectedUnit, activeTab }) => {
+const Result = ({ options, selectedUnit, activeTab }) => {
   const [result, setResult] = useState(0);
 
   useEffect(() => {
@@ -22,13 +22,18 @@ const Result = ({ selectedUnit, activeTab }) => {
     }
   }, [selectedUnit, activeTab]);
 
+  const unitSymbol = (unitName) => {
+    const unit = options.find((option) => option.name === unitName);
+    return unit.symbol;
+  };
+
   return (
     <div>
       {result && activeTab && (
         <div>
-          {selectedUnit.value} {selectedUnit.from}
+          {selectedUnit.value} {unitSymbol(selectedUnit.from)}
           {" = "}
-          {result} {selectedUnit.to}
+          {result} {unitSymbol(selectedUnit.to)}
         </div>
       )}
     </div>
