@@ -10,7 +10,7 @@ public class TimeConverter implements ConvertUnits {
     @Override
     public Double convert(String from, String to, Double value) {
 
-        return switch (from.toLowerCase()) {
+        Double result = switch (from.toLowerCase()) {
             case "seconds" -> switch (to.toLowerCase()) {
                 case "minutes" -> value / 60;
                 case "hours" -> value / 3600;
@@ -37,6 +37,7 @@ public class TimeConverter implements ConvertUnits {
             };             
             default -> throw new IllegalArgumentException("invalid unit");
         };
+        return result;
     }  
 }
 

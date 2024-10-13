@@ -61,7 +61,7 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
         <option value=""> - - - - - </option>
         {options.map((unit, index) => (
           <option key={index} value={unit.name}>
-            {unit.name} {unit.symbol}
+            {unit.name}
           </option>
         ))}
       </select>
@@ -70,7 +70,7 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
         <option value=""> - - - - - </option>
         {options.map((unit, index) => (
           <option key={index} value={unit.name}>
-            {unit.name} {unit.symbol}
+            {unit.name} 
           </option>
         ))}
       </select>

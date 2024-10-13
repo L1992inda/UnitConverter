@@ -2,12 +2,11 @@ package com.training.app.services;
 
 import org.springframework.stereotype.Service;
 
-import com.training.app.components.ConvertUnits;
-import com.training.app.components.ValueCheck;
+import com.training.app.components.ValidationAndRounding;
 import com.training.app.converters.TimeConverter;
 
 @Service
-public class TimeConverterService extends ValueCheck  implements ConvertUnits {
+public class TimeConverterService extends ValidationAndRounding {
 
     private final TimeConverter timeConverter;
 
@@ -18,6 +17,6 @@ public class TimeConverterService extends ValueCheck  implements ConvertUnits {
     @Override
     public Double convert(String from, String to, Double value) {
         validate(from, to, value);
-        return timeConverter.convert(from, to, value);
+        return round(timeConverter.convert(from, to, value),8);
     }
 }

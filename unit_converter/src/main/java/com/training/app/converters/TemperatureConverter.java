@@ -10,7 +10,7 @@ public class TemperatureConverter implements ConvertUnits {
     @Override
     public Double convert(String from, String to, Double value) {
 
-        return switch (from.toLowerCase()) {
+         Double result = switch (from.toLowerCase()) {
             case "celsius" -> switch (to.toLowerCase()) {
                 case "fahrenheit" -> (value * 1.8) + 32;
                 case "kelvin" -> value + 273.15;
@@ -31,5 +31,7 @@ public class TemperatureConverter implements ConvertUnits {
 
             default -> throw new IllegalArgumentException("invalid unit");
         };
+        return result;
     }
+    
 }

@@ -9,7 +9,7 @@ public class WeightConverter implements ConvertUnits {
 
     @Override
     public Double convert(String from, String to, Double value) {
-        return switch (from.toLowerCase()) {
+        Double result = switch (from.toLowerCase()) {
             case "tons" -> switch (to.toLowerCase()) {
                 case "kilograms" -> value * 1000L;
                 case "grams" -> value * 1000000L;
@@ -47,5 +47,6 @@ public class WeightConverter implements ConvertUnits {
             };
             default -> throw new IllegalArgumentException("invalid unit");
         };
+        return result;
     }
 }

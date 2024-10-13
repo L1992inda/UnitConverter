@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import com.training.app.components.ConvertUnits;
 
 @Component
-public class LengthConverter implements ConvertUnits{
+public class LengthConverter implements ConvertUnits {
 
     @Override
     public Double convert(String from, String to, Double value) {
 
-        return switch (from.toLowerCase()) {
+        Double result = switch (from.toLowerCase()) {
             case "millimeters" -> switch (to.toLowerCase()) {
                 case "centimeters" -> value / 10;
                 case "decimeters" -> value / 100;
@@ -48,5 +48,6 @@ public class LengthConverter implements ConvertUnits{
             };
             default -> throw new IllegalArgumentException("invalid unit");
         };
-    }  
+        return result;
+    }
 }
