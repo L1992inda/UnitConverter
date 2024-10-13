@@ -49,6 +49,7 @@ const Dropdown = ({  options, activeTab, selectedUnit, setSelectedUnit }) => {
         <input
           name="userInput"
           type="number"
+          min={1}
           value={selectedUnit.value}
           onChange={updateValue}
           onFocus={inputOnFocus}
