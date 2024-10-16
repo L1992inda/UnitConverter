@@ -5,9 +5,7 @@
   The application provides real-time conversion through a back-end API, and automatically returns results.
 </h4>
 <hr>
-[Watch the demo video](https://github.com/L1992inda/UnitConverter/blob/main/frontend/public/convert_app_gif.mp4?raw=true)
-
-
+<img src="https://raw.githubusercontent.com/L1992inda/UnitConverter/main/frontend/public/app_gif.gif" alt="App GIF" width="600">
 <hr>
 <div>
 <h4>Set up and run the project locally.</h4>
