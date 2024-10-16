@@ -5,6 +5,11 @@
   The application provides real-time conversion through a back-end API, and automatically returns results.
 </h4>
 <hr>
+[Watch the demo video](https://github.com/L1992inda/UnitConverter/blob/main/frontend/public/convert_app_gif.mp4?raw=true)
+
+
+<hr>
+<div>
 <h4>Set up and run the project locally.</h4>
 <ul>
   <li>
@@ -42,6 +47,7 @@
     <code>npm start</code>
   </li>
 </ul>
+</div>
 <br>
 <h4>The application will start at <a href="http://localhost:3000">http://localhost:3000</a> and will communicate with the backend.</h4>
 
